@@ -10,7 +10,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        Button(action: {
+            print("My Watchlist Button tapped")
+        }) {
+            Image("My Watchlist Button")
+        }
     }
 }
 
