@@ -10,10 +10,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Button(action: {
-            print("My Watchlist Button tapped")
-        }) {
-            Image("My Watchlist Button")
+        NavigationView {
+            VStack {
+                Button(action: {
+                    print("My Watchlist Button tapped")
+                    NavigationLink("DetailsView", destination: DetailsView())
+                }) {
+                    Image("My Watchlist Button")
+                }
+            }
         }
     }
 }
