@@ -12,10 +12,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Button(action: {
-                    print("My Watchlist Button tapped")
-                    NavigationLink("DetailsView", destination: DetailsView())
-                }) {
+                NavigationLink(destination: DetailsView()) {
                     Image("My Watchlist Button")
                 }
             }
