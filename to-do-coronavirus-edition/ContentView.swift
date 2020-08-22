@@ -13,7 +13,7 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 NavigationLink(destination: DetailsView()) {
-                    Image("My Watchlist Button")
+                    Image("myWatchlistButton")
                 }
             }
         }
