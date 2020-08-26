@@ -10,7 +10,11 @@ import SwiftUI
 
 struct DetailsView: View {
     var body: some View {
-        Text("Hello Second View")
+        VStack {
+            List() {
+                Text("Hello Second View")
+            }
+        }
     }
 }
 
