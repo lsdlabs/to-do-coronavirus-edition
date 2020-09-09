@@ -16,7 +16,7 @@ struct DetailsView: View {
                 Text("Hello Second View")
             }
         }
-        .navigationBarTitle("Details")
+        .navigationBarTitle("Movie Watchlist")
         .navigationBarItems(trailing: Button(action: {
             self.isShowingSheet.toggle()
         }) {
