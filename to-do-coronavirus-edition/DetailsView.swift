@@ -9,17 +9,34 @@
 import SwiftUI
 
 struct DetailsView: View {
+    @State var isShowingSheet = false
     var body: some View {
         VStack {
             List() {
                 Text("Hello Second View")
             }
         }
+        .navigationBarTitle("Details")
+        .navigationBarItems(trailing: Button(action: {
+            self.isShowingSheet.toggle()
+        }) {
+            Image(systemName: "plus")
+        })
+            .sheet(isPresented: $isShowingSheet) {
+                VStack() {
+                    Text("Hello Sheet")
+                    Button(action: {
+                        self.isShowingSheet = false
+                    }) { Text("Done")}
+                }
+        }
     }
 }
 
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsView()
+        NavigationView() {
+            DetailsView()
+        }
     }
 }
