@@ -58,6 +58,8 @@
 		2018A84724E480C800DC79F4 /* to-do-coronavirus-edition */ = {
 			isa = PBXGroup;
 			children = (
+				209D7DB9252E431E001B1EFE /* Services */,
+				209D7DB8252E4312001B1EFE /* Models */,
 				2018A84824E480C800DC79F4 /* AppDelegate.swift */,
 				2018A84A24E480C800DC79F4 /* SceneDelegate.swift */,
 				2018A84C24E480C800DC79F4 /* ContentView.swift */,
@@ -76,6 +78,20 @@
 				2018A85124E480CB00DC79F4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		209D7DB8252E4312001B1EFE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		209D7DB9252E431E001B1EFE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

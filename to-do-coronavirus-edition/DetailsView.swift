@@ -9,25 +9,25 @@
 import SwiftUI
 
 struct DetailsView: View {
-    @State private var isShowingSheet = false
+  @State private var isShowingSheet = false
 
-    var body: some View {
-      ListView()
-        .navigationBarTitle("Movie Watchlist")
-        .navigationBarItems(trailing: Button(action: {
-            self.isShowingSheet.toggle()
-        }) {
-            Image(systemName: "plus")
-        })
-            .sheet(isPresented: $isShowingSheet) {
-                VStack() {
-                    Text("Hello Sheet")
-                    Button(action: {
-                        self.isShowingSheet = false
-                    }) { Text("Done")}
-                }
+  var body: some View {
+    ListView()
+      .navigationBarTitle("Movie Watchlist")
+      .navigationBarItems(trailing: Button(action: {
+        self.isShowingSheet.toggle()
+      }) {
+        Image(systemName: "plus")
+      })
+      .sheet(isPresented: $isShowingSheet) {
+        VStack() {
+          Text("Hello Sheet")
+          Button(action: {
+            self.isShowingSheet = false
+          }) { Text("Done")}
         }
     }
+  }
 }
 
 struct ListView: View {
@@ -40,14 +40,18 @@ struct ListView: View {
   }
 }
 
-
-
-
-
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView() {
             DetailsView()
+        }
+    }
+}
+
+struct ListView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView() {
+            ListView()
         }
     }
 }
