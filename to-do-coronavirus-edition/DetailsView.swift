@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct DetailsView: View {
-    @State var isShowingSheet = false
+    @State private var isShowingSheet = false
+  
     var body: some View {
         VStack {
             List() {
