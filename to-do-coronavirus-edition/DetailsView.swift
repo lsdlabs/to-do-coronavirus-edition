@@ -10,13 +10,9 @@ import SwiftUI
 
 struct DetailsView: View {
     @State private var isShowingSheet = false
-  
+
     var body: some View {
-        VStack {
-            List() {
-                Text("Hello Second View")
-            }
-        }
+      ListView()
         .navigationBarTitle("Movie Watchlist")
         .navigationBarItems(trailing: Button(action: {
             self.isShowingSheet.toggle()
@@ -33,6 +29,20 @@ struct DetailsView: View {
         }
     }
 }
+
+struct ListView: View {
+  var body: some View {
+    VStack {
+      List() {
+        Text("Hello Second View")
+      }
+    }
+  }
+}
+
+
+
+
 
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
