@@ -14,6 +14,9 @@
 		2018A85224E480CB00DC79F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2018A85124E480CB00DC79F4 /* Preview Assets.xcassets */; };
 		2018A85524E480CB00DC79F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2018A85324E480CB00DC79F4 /* LaunchScreen.storyboard */; };
 		2018A86324E5EF8F00DC79F4 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2018A86224E5EF8F00DC79F4 /* DetailsView.swift */; };
+		209D7DBB252E43DB001B1EFE /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D7DBA252E43DB001B1EFE /* MovieService.swift */; };
+		209D7DBD252E450C001B1EFE /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209D7DBC252E450C001B1EFE /* Movie.swift */; };
+		20F02C0724F81E0700EB7658 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F02C0624F81E0700EB7658 /* DataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		2018A85424E480CB00DC79F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2018A85624E480CB00DC79F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2018A86224E5EF8F00DC79F4 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		209D7DBA252E43DB001B1EFE /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
+		209D7DBC252E450C001B1EFE /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		20F02C0624F81E0700EB7658 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,7 @@
 				2018A85324E480CB00DC79F4 /* LaunchScreen.storyboard */,
 				2018A85624E480CB00DC79F4 /* Info.plist */,
 				2018A85024E480CB00DC79F4 /* Preview Content */,
+				20F02C0624F81E0700EB7658 /* DataStore.swift */,
 			);
 			path = "to-do-coronavirus-edition";
 			sourceTree = "<group>";
@@ -83,6 +90,7 @@
 		209D7DB8252E4312001B1EFE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				209D7DBC252E450C001B1EFE /* Movie.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -90,6 +98,7 @@
 		209D7DB9252E431E001B1EFE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				209D7DBA252E43DB001B1EFE /* MovieService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -165,9 +174,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				209D7DBD252E450C001B1EFE /* Movie.swift in Sources */,
+				209D7DBB252E43DB001B1EFE /* MovieService.swift in Sources */,
 				2018A84924E480C800DC79F4 /* AppDelegate.swift in Sources */,
 				2018A86324E5EF8F00DC79F4 /* DetailsView.swift in Sources */,
 				2018A84B24E480C800DC79F4 /* SceneDelegate.swift in Sources */,
+				20F02C0724F81E0700EB7658 /* DataStore.swift in Sources */,
 				2018A84D24E480C800DC79F4 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
