@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol MovieService {
+    func searchMovie(query: String, completion: @escaping (Result<MovieResponse, MovieError>) -> ())
+}
+
 enum MovieError: Error {
     case apiError
     case invalidEndpoint
