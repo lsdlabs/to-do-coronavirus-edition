@@ -22,17 +22,22 @@ class MovieStore: MovieService {
 
     func searchMovie(query: String, completion: @escaping (Result<MovieResponse, MovieError>) -> ()) {
         //TO-DO: add method body/implementation
+        guard let url = URL(string: "\(baseAPIURL)/search/movie") else {
+            completion(.failure(.invalidEndpoint))
+            return
+        }
+        self.decodeDataFromURL(url: url, parameters: ["query": query], completion: completion)
     }
 
-    private func decodeDataFromURL<T: Decodable>(url: URL, params: [String: String]? = nil, completion: @escaping (Result<T, MovieError>) -> ()) {
+    private func decodeDataFromURL<T: Decodable>(url: URL, parameters: [String: String]? = nil, completion: @escaping (Result<T, MovieError>) -> ()) {
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             completion(.failure(.invalidEndpoint))
             return
         }
 
         var queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
-        if let params = params {
-            queryItems.append(contentsOf: params.map { URLQueryItem(name: $0.key, value: $0.value) })
+        if let parameters = parameters {
+            queryItems.append(contentsOf: parameters.map { URLQueryItem(name: $0.key, value: $0.value) })
         }
 
         urlComponents.queryItems = queryItems
