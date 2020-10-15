@@ -48,6 +48,23 @@ class MovieStore: MovieService {
                 completion(.failure(.apiError))
                 return
             }
-        }
+
+            guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+                //TO-DO: implement error
+                return
+            }
+
+            guard let data = data else {
+                //TO-DO: implement error
+                return
+            }
+
+            do {
+                let decodedResponse = try self.jsonDecoder.decode(T.self, from: data)
+                //TO-DO: implement success
+            } catch {
+                //TO-DO: implement error
+            }
+        }.resume()
     }
 }
