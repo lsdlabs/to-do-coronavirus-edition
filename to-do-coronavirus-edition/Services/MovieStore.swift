@@ -26,7 +26,7 @@ class MovieStore: MovieService {
             return
         }
         
-        self.decodeDataFromURL(url: url, parameters: ["query": query], completion: completion)
+        decodeDataFromURL(url: url, parameters: ["query": query], completion: completion)
     }
     
     // https://github.com/raywenderlich/swift-style-guide#generics
@@ -42,6 +42,8 @@ class MovieStore: MovieService {
             return
         }
 
+        // Nice to have:
+        // Maybe there could be a small method that accepts 'parameters' as an argument and returns [URLQueryItem]?
         var queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
         
         if let parameters = parameters {
