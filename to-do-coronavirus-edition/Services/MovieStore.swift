@@ -14,7 +14,7 @@ class MovieStore: MovieService {
     static let shared = MovieStore()
     private init() {}
 
-    private let apiKey = ""
+    private let apiKey = "8d350c8f38888182efa6a31b35171f21"
     private let baseAPIURL = "https://api.themoviedb.org/3"
     private let urlSession = URLSession.shared
     private let jsonDecoder = Helpers.jsonDecoder
@@ -22,11 +22,20 @@ class MovieStore: MovieService {
 
     func searchMovie(query: String, completion: @escaping (Result<MovieResponse, MovieError>) -> ()) {
         //TO-DO: add method body/implementation
-        guard let url = URL(string: "\(baseAPIURL)/search/movie") else {
+//        guard let url = URL(string: "\(baseAPIURL)/search/movie") else {
+//            completion(.failure(.invalidEndpoint))
+//            return
+//        }
+
+        let myURL = URL(string: "\(baseAPIURL)/search/movie/?api_key=\(apiKey)&query=\(query)")
+        print(myURL) //myURL is nil
+
+        guard let url = URL(string: "\(baseAPIURL)/search/movie/?api_key=\(apiKey)&query=\(query)") else {
             completion(.failure(.invalidEndpoint))
             return
         }
         
+//        self.decodeDataFromURL(url: url, parameters: ["query": query], completion: completion)
         self.decodeDataFromURL(url: url, parameters: ["query": query], completion: completion)
     }
 

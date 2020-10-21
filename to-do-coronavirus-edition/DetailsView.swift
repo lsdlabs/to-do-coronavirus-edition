@@ -11,9 +11,29 @@ import SwiftUI
 struct DetailsView: View {
     @State private var isShowingSheet = false
 
+    let service: MovieStore
+
+    //initializing the MovieStore service
+    init(service: MovieStore = MovieStore.shared) {
+        self.service = service
+
+
+//        service.searchMovie(query: "The Exorcist") { (response) in
+//            switch response {
+//            case .success(let movieResponse):
+//                print(movieResponse)
+//            case .failure(let error):
+//                print(error)
+//            }
+//            print(response)
+//            print("does this print")
+//        }
+    }
+
     var body: some View {
         ListView()
             .navigationBarTitle("Movie Watchlist")
+            .onAppear(perform: loadMovieSearchResults)
             .navigationBarItems(trailing: Button(action: {
                 self.isShowingSheet.toggle()
             }) {
@@ -21,7 +41,22 @@ struct DetailsView: View {
             })
             .sheet(isPresented: $isShowingSheet) {
                 SheetView(isShowingSheet: self.$isShowingSheet)
+
             }
+    }
+
+    //calling searchMovie...simply trying to print to see if I get data back...not making any updates to the UI so DispatchQueue.main.async shouldn't be necessary yet
+    private func loadMovieSearchResults() {
+        service.searchMovie(query: "The Exorcist") { (response) in
+            switch response {
+            case .success(let movieResponse):
+                print(movieResponse)
+            case .failure(let error):
+                print(error)
+            }
+            print(response)
+            print("does this print?")
+        }
     }
 }
 
