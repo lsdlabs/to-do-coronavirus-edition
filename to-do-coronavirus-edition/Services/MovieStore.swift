@@ -19,27 +19,28 @@ class MovieStore: MovieService {
     private let urlSession = URLSession.shared
     private let jsonDecoder = Helpers.jsonDecoder
 
-
     func searchMovie(query: String, completion: @escaping (Result<MovieResponse, MovieError>) -> ()) {
         //TO-DO: add method body/implementation
 //        guard let url = URL(string: "\(baseAPIURL)/search/movie") else {
 //            completion(.failure(.invalidEndpoint))
 //            return
 //        }
+        
+        guard let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        
+        let myURL = URL(string: "\(baseAPIURL)/search/movie/?api_key=\(apiKey)&query=\(encodedQuery)")
 
-        let myURL = URL(string: "\(baseAPIURL)/search/movie/?api_key=\(apiKey)&query=\(query)")
-        print(myURL) //myURL is nil
-
-        guard let url = URL(string: "\(baseAPIURL)/search/movie/?api_key=\(apiKey)&query=\(query)") else {
+        guard let url = myURL else {
             completion(.failure(.invalidEndpoint))
             return
         }
         
-//        self.decodeDataFromURL(url: url, parameters: ["query": query], completion: completion)
-        self.decodeDataFromURL(url: url, parameters: ["query": query], completion: completion)
+        decodeDataFromURL(url: url, parameters: ["query": query], completion: completion)
     }
 
-    private func decodeDataFromURL<Response: Decodable>(url: URL, parameters: [String: String]? = nil, completion: @escaping (Result<Response, MovieError>) -> ()) {
+    private func decodeDataFromURL<Response: Decodable>(url: URL,
+                                                        parameters: [String: String]? = nil,
+                                                        completion: @escaping (Result<Response, MovieError>) -> ()) {
         guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             completion(.failure(.invalidEndpoint))
             return
@@ -65,21 +66,17 @@ class MovieStore: MovieService {
                 return
             }
 
-            guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                //TO-DO: implement error
-                return
-            }
-
-            guard let data = data else {
-                //TO-DO: implement error
+            guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode,
+                let data = data else {
+                    completion(.failure(.invalidResponse))
                 return
             }
 
             do {
                 let decodedResponse = try self.jsonDecoder.decode(Response.self, from: data)
-                //TO-DO: implement success
+                completion(.success(decodedResponse))
             } catch {
-                //TO-DO: implement error
+                completion(.failure(.invalidResponse))
             }
         }.resume()
     }
