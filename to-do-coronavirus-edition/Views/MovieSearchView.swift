@@ -15,10 +15,6 @@ struct MovieSearchView: View {
     var body: some View {
         NavigationView {
 
-//            List {
-//                SearchBarView(placeholder: "Enter your search here", text: self.$movieSearchState.query)
-//            }
-
             List {
                 SearchBarView(placeholder: "Search movies", text: self.$movieSearchState.query)
                     .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
@@ -38,15 +34,9 @@ struct MovieSearchView_Previews: PreviewProvider {
     }
 }
 
-//extension String: ObservableObject {
-//
-//}
-
-
 import SwiftUI
 import Combine
 import Foundation
-
 
 class MovieSearchState: ObservableObject {
 
