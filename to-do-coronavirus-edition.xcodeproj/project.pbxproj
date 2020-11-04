@@ -70,10 +70,9 @@
 			children = (
 				209D7DB9252E431E001B1EFE /* Services */,
 				209D7DB8252E4312001B1EFE /* Models */,
+				2077ABD325524507006F5488 /* Views */,
 				2018A84824E480C800DC79F4 /* AppDelegate.swift */,
 				2018A84A24E480C800DC79F4 /* SceneDelegate.swift */,
-				2018A84C24E480C800DC79F4 /* ContentView.swift */,
-				2018A86224E5EF8F00DC79F4 /* DetailsView.swift */,
 				2018A84E24E480CB00DC79F4 /* Assets.xcassets */,
 				2018A85324E480CB00DC79F4 /* LaunchScreen.storyboard */,
 				2018A85624E480CB00DC79F4 /* Info.plist */,
@@ -89,6 +88,15 @@
 				2018A85124E480CB00DC79F4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2077ABD325524507006F5488 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2018A84C24E480C800DC79F4 /* ContentView.swift */,
+				2018A86224E5EF8F00DC79F4 /* DetailsView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		209D7DB8252E4312001B1EFE /* Models */ = {
