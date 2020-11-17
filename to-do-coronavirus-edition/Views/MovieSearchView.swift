@@ -21,6 +21,16 @@ struct MovieSearchView: View {
                 SearchBarView(placeholder: "Search movies", text: self.$movieSearchState.query)
                     .listRowInsets(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
 //published properties can have a debounce (look into)
+
+
+//To-Do: try an if statment; rename ofTheMovies
+//                guard let ofTheMovies = self.movieSearchState.movies else { return }
+//                ForEach(ofTheMovies) { movie in
+//                    VStack(alignment: .leading) {
+//                        Text(movie.title)
+//                    }
+//                }
+
             }
             .onAppear {
                 //to-do: observation
