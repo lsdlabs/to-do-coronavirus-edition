@@ -53,7 +53,7 @@ class MovieSearchState: ObservableObject {
         self.movieService = movieService
     }
 
-    func startObserve() {
+    func startObservation() {
         guard cancellable == nil else { return }
 
         self.cancellable = self.$query
