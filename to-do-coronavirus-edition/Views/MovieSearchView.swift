@@ -16,24 +16,13 @@ struct MovieSearchView: View {
 
     var body: some View {
         NavigationView {
-
             List {
                 SearchBarView(placeholder: "Search movies", text: self.$movieSearchState.query)
                     .listRowInsets(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
-//published properties can have a debounce (look into)
-
-
-//To-Do: try an if statment; rename ofTheMovies
-//                guard let ofTheMovies = self.movieSearchState.movies else { return }
-//                ForEach(ofTheMovies) { movie in
-//                    VStack(alignment: .leading) {
-//                        Text(movie.title)
-//                    }
-//                }
-
-            }
-            .onAppear {
-                //to-do: observation
+                    
+                ForEach(self.movieSearchState.movies, id: \.self) { movie in
+                    Text(movie.title)
+                }
             }
             .navigationBarTitle("Search")
         }
@@ -46,57 +35,55 @@ struct MovieSearchView_Previews: PreviewProvider {
     }
 }
 
-class MovieSearchState: ObservableObject {
+final class MovieSearchState: ObservableObject {
 
     @Published var query = ""
-    @Published var movies: [Movie]?
+    @Published var movies: [Movie] = []
 
     private var cancellable: AnyCancellable?
+    
+    var isEmptyResults: Bool { self.movies.isEmpty }
 
     let movieService: MovieService
 
-    var isEmptyResults: Bool {
-        !self.query.isEmpty && self.movies != nil && self.movies!.isEmpty
-    }
-
     init(movieService: MovieService = MovieStore.shared) {
         self.movieService = movieService
+        
+        startObservation()
     }
 
     func startObservation() {
-        guard cancellable == nil else { return }
-
-        self.cancellable = self.$query
-            .map { [weak self] text in
-                self?.movies = nil
-                return text
-        }.debounce(for: 2.0, scheduler: DispatchQueue.main)
-            .sink { [weak self] in self?.search(query: $0)
-        }
+        cancellable = AnyCancellable(
+            self.$query
+                .debounce(for: 2.0, scheduler: DispatchQueue.main)
+                .sink { movieName in
+                    print("searchText: \(movieName)")
+                    self.searchMoviesBy(name: movieName)
+                }
+        )
     }
 
-    func search(query: String) {
-        self.movies = nil
-
-        guard !query.isEmpty else {
+    func searchMoviesBy(name: String) {
+        
+        // TODO: maybe have the 'clear' button set 'movies' to empty
+        // instead so there wont be a two second delay
+        guard !name.isEmpty else {
+            self.movies = []
             return
         }
-
-        self.movieService.searchMovie(query: query) {[weak self] (result) in
-            guard let self = self, self.query == query else { return }
-
+        
+        movieService.searchMovie(query: name) { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let response):
-                self.movies = response.results
+                DispatchQueue.main.async { [weak self] in
+                    self?.movies = response.results
+                }
             case .failure(let error):
                 print(error)
             }
         }
     }
-
-//    deinit {
-//        self.cancellable?.cancel()
-//        self.cancellable = nil
-//    }
 
 }
