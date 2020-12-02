@@ -55,6 +55,7 @@ final class MovieSearchState: ObservableObject {
     func startObservation() {
         cancellable = AnyCancellable(
             self.$query
+                .filter({ $0.isEmpty })
                 .debounce(for: 2.0, scheduler: DispatchQueue.main)
                 .sink { movieName in
                     print("searchText: \(movieName)")
