@@ -55,7 +55,7 @@ final class MovieSearchState: ObservableObject {
     func startObservation() {
         cancellable = AnyCancellable(
             self.$query
-                .filter({ $0.isEmpty })
+                .filter({ !$0.isEmpty })
                 .debounce(for: 2.0, scheduler: DispatchQueue.main)
                 .sink { movieName in
                     print("searchText: \(movieName)")
@@ -65,13 +65,8 @@ final class MovieSearchState: ObservableObject {
     }
 
     func searchMoviesBy(name: String) {
-        
         // TODO: maybe have the 'clear' button set 'movies' to empty
         // instead so there wont be a two second delay
-        guard !name.isEmpty else {
-            self.movies = []
-            return
-        }
         
         movieService.searchMovie(query: name) { [weak self] result in
             guard let self = self else { return }
